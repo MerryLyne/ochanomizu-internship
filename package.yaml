@@ -23,6 +23,10 @@ dependencies:
   - base >= 4.7 && < 5
   - hasktorch
   - hasktorch-tools
+  - cassava
+  - vector
+  - bytestring
+  - nlp-tools
 
 ghc-options:
   - -Wall
@@ -37,6 +41,13 @@ ghc-options:
 
 library:
   source-dirs: src
+  dependencies:
+    - base >= 4.7 && < 5
+    - hasktorch
+    - hasktorch-tools
+    - bytestring
+    - vector
+    - split
 
 executables:
   ochanomizu-exe:
@@ -48,15 +59,19 @@ executables:
       - -with-rtsopts=-N
     dependencies:
       - ochanomizu
+      - bytestring
+      - vector
+      - split
+      - hasktorch
 
-  session4:
-    main: Session4.PerceptronAndGate
+  Session5:
+    main: Session5.Admit
     source-dirs: src
     ghc-options:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
-      - -main-is Session4.PerceptronAndGate
+      - -main-is Session5.Admit
     dependencies:
       - ochanomizu
 
