@@ -20,15 +20,15 @@ import Control.Monad (mzero)
 import GHC.Generics (Generic)
 
 data Admission = Admission
-  { serialNo        :: !Int
-  , gre             :: !Int
-  , toefl           :: !Int
-  , uniRating       :: !Int
-  , sop             :: !Double
-  , lor             :: !Double
-  , cgpa            :: !Double
-  , research        :: !Int
-  , chanceOfAdmit   :: !Double
+  { serialNo         :: !Int
+  , gre              :: !Int
+  , toefl            :: !Int
+  , uniRating        :: !Int
+  , sop              :: !Double
+  , lor              :: !Double
+  , cgpa             :: !Double
+  , research         :: !Int
+  , chanceOfAdmit    :: !Double
   } deriving (Show, Generic)
 
 instance FromNamedRecord Admission where
@@ -46,7 +46,7 @@ instance FromNamedRecord Admission where
 readAdmissions :: FilePath -> IO (Either String (V.Vector Admission))
 readAdmissions path = do
   raw <- BL.readFile path
-  case decodeByName raw of
+  case decodeByName  raw of
     Left err -> return $ Left err
     Right (_, vec) -> return $ Right vec
 
@@ -63,13 +63,13 @@ featuresToTensor :: V.Vector Admission -> Tensor
 featuresToTensor = asTensor . V.toList . V.map toFeatureList
   where
     toFeatureList adm =
-      [ fromIntegral (gre adm)         -- max GRE
-      , fromIntegral (toefl adm)       -- max TOEFL
-      , fromIntegral (uniRating adm)    -- max rating
-      , realToFrac (sop adm)        
-      , realToFrac (lor adm)        
-      , realToFrac (cgpa adm)           -- max CGPA
-      , fromIntegral (research adm)  :: Float  -- already 0 or 1
+      [ fromIntegral (gre adm) / 340.0
+      , fromIntegral (toefl adm) / 120.0
+      , fromIntegral (uniRating adm) / 5.0
+      , realToFrac (sop adm) / 5.0
+      , realToFrac (lor adm) / 5.0
+      , realToFrac (cgpa adm) / 10.0
+      , fromIntegral (research adm) :: Float
       ]
 
 labelsToTensor :: V.Vector Admission -> Tensor

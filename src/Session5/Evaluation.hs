@@ -55,6 +55,15 @@ recall actualOutput predictedOutput =
        then 0.0
        else fromIntegral tp / fromIntegral (tp + fn)
 
+confusionMatrix :: [Int] -> [Int] -> (Int, Int, Int, Int)
+confusionMatrix preds labels =
+  let paired = zip preds labels
+      tp = length [() | (p, l) <- paired, p == 1 && l == 1]
+      fp = length [() | (p, l) <- paired, p == 1 && l == 0]
+      fn = length [() | (p, l) <- paired, p == 0 && l == 1]
+      tn = length [() | (p, l) <- paired, p == 0 && l == 0]
+  in (tp, fp, fn, tn)
+
 f1Score :: Tensor -> Tensor -> Float
 f1Score actualOutput predictedOutput =
     let prec = precision actualOutput predictedOutput
