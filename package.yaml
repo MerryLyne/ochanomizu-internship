@@ -51,6 +51,9 @@ library:
     - bytestring
     - vector
     - split
+    - aeson
+    - utf8-string
+    - containers
 
 executables:
   ochanomizu-exe:
@@ -67,16 +70,19 @@ executables:
       - split
       - hasktorch
 
-  Session6:
-    main: Session6.Word2vec
+  Session7:
+    main: Session7.RNN
     source-dirs: src
     ghc-options:
       - -threaded
       - -rtsopts
       - -with-rtsopts=-N
-      - -main-is Session6.Word2vec
     dependencies:
       - ochanomizu
+      - aeson
+      - bytestring
+      - utf8-string
+      - containers
 
 tests:
   ochanomizu-test:

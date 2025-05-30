@@ -31,6 +31,7 @@ library
       Session5.Data
       Session5.Evaluation
       Session6.Word2vec
+      Session7.RNN
   other-modules:
       Paths_ochanomizu
   autogen-modules:
@@ -39,7 +40,8 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
     , bytestring
     , cassava
     , containers
@@ -52,22 +54,24 @@ library
     , vector
   default-language: Haskell2010
 
-executable Session6
-  main-is: Session6/Word2vec.hs
+executable Session7
+  main-is: Session7/RNN.hs
   other-modules:
       Lib
       Session4.PerceptronAndGate
       Session5.Admit
       Session5.Data
       Session5.Evaluation
+      Session6.Word2vec
       Paths_ochanomizu
   autogen-modules:
       Paths_ochanomizu
   hs-source-dirs:
       src
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -main-is Session6.Word2vec -main-is Session6.Word2vec
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -main-is Session7.RNN
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
     , bytestring
     , cassava
     , containers
