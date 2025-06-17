@@ -83,3 +83,5 @@ main = do
 
   putStrLn "\nParsed Hypernyms:"
   mapM_ print hypernyms 
+
+  -- Will use Valentin Chaud's implementation to continue
