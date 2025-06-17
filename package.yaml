@@ -30,6 +30,9 @@ dependencies:
   - utf8-string
   - containers
   - random
+  - megaparsec
+  - text
+  - containers
 
 ghc-options:
   - -Wall
@@ -70,9 +73,9 @@ executables:
       - split
       - hasktorch
 
-  Session7:
-    main: Session7.RNN
-    source-dirs: src
+  HyperbolicClassifier:
+    main: Parser.hs
+    source-dirs: src/HyperbolicClassifier
     ghc-options:
       - -threaded
       - -rtsopts
@@ -83,6 +86,8 @@ executables:
       - bytestring
       - utf8-string
       - containers
+      - megaparsec
+      - text
 
 tests:
   ochanomizu-test:
