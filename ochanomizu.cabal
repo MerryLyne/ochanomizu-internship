@@ -27,6 +27,10 @@ library
   exposed-modules:
       Lib
       Session4.PerceptronAndGate
+      Session5.Admit
+      Session5.Data
+      Session5.Evaluation
+      Session6.Word2vec
   other-modules:
       Paths_ochanomizu
   autogen-modules:
@@ -36,8 +40,44 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , bytestring
+    , cassava
+    , containers
     , hasktorch
     , hasktorch-tools
+    , nlp-tools
+    , random
+    , split
+    , utf8-string
+    , vector
+  default-language: Haskell2010
+
+executable Session6
+  main-is: Session6/Word2vec.hs
+  other-modules:
+      Lib
+      Session4.PerceptronAndGate
+      Session5.Admit
+      Session5.Data
+      Session5.Evaluation
+      Paths_ochanomizu
+  autogen-modules:
+      Paths_ochanomizu
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -main-is Session6.Word2vec -main-is Session6.Word2vec
+  build-depends:
+      base >=4.7 && <5
+    , bytestring
+    , cassava
+    , containers
+    , hasktorch
+    , hasktorch-tools
+    , nlp-tools
+    , ochanomizu
+    , random
+    , utf8-string
+    , vector
   default-language: Haskell2010
 
 executable ochanomizu-exe
@@ -51,26 +91,17 @@ executable ochanomizu-exe
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
+    , cassava
+    , containers
     , hasktorch
     , hasktorch-tools
+    , nlp-tools
     , ochanomizu
-  default-language: Haskell2010
-
-executable session4
-  main-is: Session4/PerceptronAndGate.hs
-  other-modules:
-      Lib
-      Paths_ochanomizu
-  autogen-modules:
-      Paths_ochanomizu
-  hs-source-dirs:
-      src
-  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N -main-is Session4.PerceptronAndGate -main-is Session4.PerceptronAndGate
-  build-depends:
-      base >=4.7 && <5
-    , hasktorch
-    , hasktorch-tools
-    , ochanomizu
+    , random
+    , split
+    , utf8-string
+    , vector
   default-language: Haskell2010
 
 test-suite ochanomizu-test
@@ -85,7 +116,14 @@ test-suite ochanomizu-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
+    , cassava
+    , containers
     , hasktorch
     , hasktorch-tools
+    , nlp-tools
     , ochanomizu
+    , random
+    , utf8-string
+    , vector
   default-language: Haskell2010
